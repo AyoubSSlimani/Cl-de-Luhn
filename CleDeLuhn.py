@@ -51,7 +51,8 @@ carte.append(cleDeLuhn)
 print(carte)
 
 
-##demain idée : l'utilisateur entre ses 16 chiffres de cartes ()
+##demain idée : l'utilisateur entre ses 16 chiffres de cartes () 
+
 
 
 
