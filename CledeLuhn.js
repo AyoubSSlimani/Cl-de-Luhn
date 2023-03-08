@@ -79,8 +79,13 @@ for(i = 0; i < tableauCarteString.length; i++){
     if(i == 4 || i == 8 || i == 12){
         stringCarteAleatoire += " ";
         stringCarteAleatoire += tableauCarteString[i];
-    } else {
-        stringCarteAleatoire += tableauCarteString[i];
+    } else { //voir ici 
+        if(stringCarteAleatoire.length < 19){
+            console.log("coucou");
+            stringCarteAleatoire += tableauCarteString[i];
+        } else {
+            stringCarteAleatoire = "";
+        }
     } 
 }   
         console.log(stringCarteAleatoire.length);
