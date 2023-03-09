@@ -41,3 +41,18 @@
     border: 1px solid black;
 
 }
+
+.boutonValider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    width: 60px;
+    height: 30px;
+    border: 2px solid black; 
+    background-color: lightgrey;
+}
+
+.boutonValider:hover {
+    cursor: pointer;
+}

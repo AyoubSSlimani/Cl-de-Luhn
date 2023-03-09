@@ -20,16 +20,16 @@ let carteAleatoire = "";
 //Génère d'abord 15 chiffres aléatoires
 function NombreAleatoire(){
     randomNumber = 0;
+    somme = 0;
     for(i = 0; i < 15; i++){
-            randomNumber = Math.floor(Math.random() * 9);
-            carte.push(randomNumber);
+        randomNumber = Math.floor(Math.random() * 9);
+        carte.push(randomNumber);
     }
 }
 
 function CarteValideAleatoire(){  
-    NombreAleatoire();
-
     //Les chiffres de rang impair sont doublés
+
     let a;
     for(i = 0; i < carte.length; i++){
         if(i % 2 == 0){
@@ -50,12 +50,14 @@ function CarteValideAleatoire(){
     
     //On ajoute tous nos nombres dans un array listeTotale
     listeTotale = listeNumberFusion.concat(listeImpaire, listeInf10);
+    console.log(listeTotale);
     
     //On va calculer le totale des nombres récoltés
     let somme = 0;
     for(i of listeTotale){
         somme +=i;
     }
+    console.log(somme);
     
     //On fait une division euclidienne et on prend le reste de la somme pour calculer la clé de Luhn
     //Puis on ajoute la clé de Luhn à la fin du tableau carte
@@ -74,9 +76,7 @@ function CarteValideAleatoire(){
 
 
     addSpace(tableauCarteString, stringCarteAleatoire);
-    console.log(carteAleatoire.length);
     if(carteAleatoire.length > 19){
-        console.log("coucou");
         divNumber.textContent = "";
     }
     
@@ -104,7 +104,8 @@ function CarteValideAleatoire(){
 
     //Lorsque qu'on clique sur boutonGenerate il y a un numéro de carte aléatoire valide contenant la clé de Luhn qui se génères
     boutonGenerate.addEventListener("click", function(){
-        if(carteAleatoire.length < 19){        
+        if(carteAleatoire.length < 19){ 
+            NombreAleatoire();
             CarteValideAleatoire();
         } else if(carteAleatoire.length == 19) {
             divNumber.textContent = "";
@@ -112,6 +113,10 @@ function CarteValideAleatoire(){
             carte = []; 
             carteString = ''; 
             carteAleatoire = "";
+            listeImpaire = [];
+            listeInf10 = [];
+            listeNumberFusion = [];
+            NombreAleatoire();
             CarteValideAleatoire();
         } 
     })

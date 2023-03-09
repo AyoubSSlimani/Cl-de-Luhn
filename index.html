@@ -13,6 +13,19 @@
 
     <button class="generate">Générer une carte valide</button>
 
+    <br>
+    <br>
+
+    <form action="">
+        <label for="carteUtilisateur"></label>
+            <p>Vérification de votre carte bancaire :</p>
+            <input id="carteUtilisateur" type="number" placeholder="ex:165465656465459" max="9999999999999999" pattern="[0-9]{16}" required> 
+        <div class="boutonValider" onclick="afficherNumeroCarteUtilisateur()">
+            <p>Valider</p>
+         </div>
+    </form>
+    
+
     <div class="carte">
         <div class="logo">
             <img src="" alt="image logo banque">
@@ -37,5 +50,6 @@
     </div>
 
     <script src="CledeLuhn.js"></script>
+    <script src="VerificationCarte.js"></script>
 </body>
 </html>
