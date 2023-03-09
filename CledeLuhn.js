@@ -14,9 +14,10 @@ let listeInf10 = []; // Liste des indexes pair < 10
 let tableauCarteString = []; // Liste des nombres séparées en string
 let stringCarteAleatoire = ''; // Les nombres finaux de notre carte en string espacé
 let randomNumber = 0;
+let carteAleatoire = "";
 
 
-
+//Génère d'abord 15 chiffres aléatoires
 function NombreAleatoire(){
     randomNumber = 0;
     for(i = 0; i < 15; i++){
@@ -25,10 +26,10 @@ function NombreAleatoire(){
     }
 }
 
-//Génère d'abord 15 chiffres aléatoires
 function CarteValideAleatoire(){  
-    //Les chiffres de rang impair sont doublés
+    NombreAleatoire();
 
+    //Les chiffres de rang impair sont doublés
     let a;
     for(i = 0; i < carte.length; i++){
         if(i % 2 == 0){
@@ -36,86 +37,84 @@ function CarteValideAleatoire(){
             doubleImpair.push(a);
             if(a >= 10){
                 let letter = a.toString();
-                let numberSplit = letter.split("");
-                let numberFusion = parseInt(numberSplit[0]) + parseInt(numberSplit[1]);
-                listeNumberFusion.push(numberFusion);            
+               let numberSplit = letter.split("");
+            let numberFusion = parseInt(numberSplit[0]) + parseInt(numberSplit[1]);
+            listeNumberFusion.push(numberFusion);            
             } else {
-                listeInf10.push(a);
+            listeInf10.push(a);
             }
         } else {
             listeImpaire.push(carte[i]);
         }
-    
     }
     
-    
+    //On ajoute tous nos nombres dans un array listeTotale
     listeTotale = listeNumberFusion.concat(listeImpaire, listeInf10);
     
+    //On va calculer le totale des nombres récoltés
     let somme = 0;
     for(i of listeTotale){
         somme +=i;
     }
     
+    //On fait une division euclidienne et on prend le reste de la somme pour calculer la clé de Luhn
+    //Puis on ajoute la clé de Luhn à la fin du tableau carte
     let reste = somme % 10;
-    
     let cleDeLuhn = 10 - reste;
-    
     carte.push(cleDeLuhn);
 
-    
-
+    //On ajoute et transforme tous les nombres du tableau carte en chaine de charactère dans la variable carteString
     for(i of carte){
         i.toString();
         carteString += i;
     }
 
-    
-    
+    //On sépare les nombres et on les ajoutes dans un array tableauCarteString
     tableauCarteString = carteString.split('');
 
-   
-    
-for(i = 0; i < tableauCarteString.length; i++){
-    if(i == 4 || i == 8 || i == 12){
-        stringCarteAleatoire += " ";
-        stringCarteAleatoire += tableauCarteString[i];
-    } else { //voir ici 
-        if(stringCarteAleatoire.length < 19){
-            console.log("coucou");
-            stringCarteAleatoire += tableauCarteString[i];
-        } else {
-            stringCarteAleatoire = "";
-        }
-    } 
-}   
-        console.log(stringCarteAleatoire.length);
-        divNumber.textContent = stringCarteAleatoire;        
 
-
-    
-    console.log(stringCarteAleatoire);
-
-
-}
-
-
-
-
-
-
-boutonGenerate.addEventListener("click", function(){
-if(stringCarteAleatoire.length < 19){
-        NombreAleatoire();
-        CarteValideAleatoire();
-    } else {
-        console.log("limite");
-        tableauCarteString = [];
-        stringCarteAleatoire = "";
-        console.log(stringCarteAleatoire.length)
-        carte = [];
-        divNumber.textcontent = "";
+    addSpace(tableauCarteString, stringCarteAleatoire);
+    console.log(carteAleatoire.length);
+    if(carteAleatoire.length > 19){
+        console.log("coucou");
+        divNumber.textContent = "";
     }
-})
+    
+    divNumber.textContent = carteAleatoire;        
+    }
+
+    //Fonction qui sert à ajouter un espace tous les 4 chiffres
+    function addSpace(array, chaineCara){
+        carteAleatoire = "";
+        for(i = 0; i < array.length; i++){
+            if(i == 4 || i == 8 || i == 12){
+                chaineCara += " ";
+                chaineCara += array[i];
+            } else if(chaineCara.length > 18) {
+                array = [];
+            } else {
+                chaineCara += array[i];
+            }
+        }  
+        carteAleatoire = chaineCara;
+    }
+
+
+
+
+    //Lorsque qu'on clique sur boutonGenerate il y a un numéro de carte aléatoire valide contenant la clé de Luhn qui se génères
+    boutonGenerate.addEventListener("click", function(){
+        if(carteAleatoire.length < 19){        
+            CarteValideAleatoire();
+        } else if(carteAleatoire.length == 19) {
+            divNumber.textContent = "";
+            divNumber.textContent = carteAleatoire;
+            carte = []; 
+            carteString = ''; 
+            carteAleatoire = "";
+            CarteValideAleatoire();
+        } 
+    })
 
 
 
