@@ -9,45 +9,66 @@
 </head>
 <body>
     
-    <h1>Clé de Luhn</h1>
-
-    <button class="generate">Générer une carte valide</button>
-
-    <br>
-    <br>
-
-    <form action="">
-        <label for="carteUtilisateur"></label>
-            <p>Vérification de votre carte bancaire :</p>
-            <input id="carteUtilisateur" type="number" placeholder="ex:165465656465459" max="9999999999999999" pattern="[0-9]{16}" required> 
-        <div class="boutonValider" onclick="afficherNumeroCarteUtilisateur()">
-            <p>Valider</p>
-         </div>
-    </form>
+    <div class="container">
+        <div class="containerForm">
+            <h1>Clé de Luhn</h1>
     
-
-    <div class="carte">
-        <div class="logo">
-            <img src="" alt="image logo banque">
-            <img src="" alt="image logo CB">
+            <button class="generate">Générer une carte valide</button>
+        
+            <br>
+            <br>
+        
+            <form action="">
+                <label for="carteUtilisateur"></label>
+                    <p>Vérification de votre carte bancaire :</p>
+                    <input id="carteUtilisateur" type="number" placeholder="ex:0654 6565 6465 1459" max="9999999999999999" pattern="[0-9]{16}" required> 
+                <label for="cardFirstName"></label>
+                    <p>Prénom sur la carte :</p>
+                    <input type="text" id="cardFirstName" placeholder="ex: Valentin">
+                <label for="cardLastName"></label>
+                    <p>Nom sur la carte :</p>
+                    <input type="text" id="cardLastName" placeholder="ex: Dupont">
+                <label for="cardExpiration"></label>
+                    <p>Date d'expiration de la carte :</p>
+                    <input type="datetime" name="" id="cardExpiration" placeholder="ex: 05/20">
+                <div class="boutonValider">
+                    <p>Valider</p>
+                 </div>
+        
+                 <div class="boutonEffacer">
+                    <p>Effacer</p>
+                 </div>
+            </form>
         </div>
-        <div class="puce">
-            <img src="" alt="image puce">
-            <img src="" alt="image sans-contact">
-        </div>
-        <div class="number">
-            <div class="numberCard">
-                <p class="numberString"></p>
+    
+        
+    
+        <div class="carte">
+            <h2 class="titleCard">CREDIT CARD</h2>
+            <div class="puce">
+                <img src="image/ImagePuce.png" alt="image puce" width="100px" height="100px">
             </div>
-        </div>
-        <div class="expiration">
-            <p>Expire Fin</p>
-        </div>
-        <div class="name">
-            <p class="firstName">FirstName LastName</p>
-            <p class="logoVisa">img logoVisa</p>
-        </div>
+            <div class="number">
+                <div class="numberCard">
+                    <p class="numberString"></p>
+                </div>
+            </div>
+            <div class="expiration">
+                <div class="expire">
+                    <p>Expire</p>
+                    <p>Fin</p>
+                </div>
+                <div class="dateExpiration">
+                    <p>00/00</p>
+                </div>
+    
+            </div>
+            <div class="name">
+                <p class="firstName">FIRSTNAME LASTNAME</p>
+            </div>
+        </div>        
     </div>
+    
 
     <script src="CledeLuhn.js"></script>
     <script src="VerificationCarte.js"></script>

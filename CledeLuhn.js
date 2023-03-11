@@ -15,6 +15,7 @@ let tableauCarteString = []; // Liste des nombres séparées en string
 let stringCarteAleatoire = ''; // Les nombres finaux de notre carte en string espacé
 let randomNumber = 0;
 let carteAleatoire = "";
+let cleDeLuhn = 0;
 
 
 //Génère d'abord 15 chiffres aléatoires
@@ -27,7 +28,7 @@ function NombreAleatoire(){
     }
 }
 
-function CarteValideAleatoire(){  
+function CarteValide(){  
     //Les chiffres de rang impair sont doublés
 
     let a;
@@ -62,7 +63,7 @@ function CarteValideAleatoire(){
     //On fait une division euclidienne et on prend le reste de la somme pour calculer la clé de Luhn
     //Puis on ajoute la clé de Luhn à la fin du tableau carte
     let reste = somme % 10;
-    let cleDeLuhn = 10 - reste;
+    cleDeLuhn = 10 - reste;
     carte.push(cleDeLuhn);
 
     //On ajoute et transforme tous les nombres du tableau carte en chaine de charactère dans la variable carteString
@@ -106,7 +107,7 @@ function CarteValideAleatoire(){
     boutonGenerate.addEventListener("click", function(){
         if(carteAleatoire.length < 19){ 
             NombreAleatoire();
-            CarteValideAleatoire();
+            CarteValide();
         } else if(carteAleatoire.length == 19) {
             divNumber.textContent = "";
             divNumber.textContent = carteAleatoire;
@@ -117,7 +118,7 @@ function CarteValideAleatoire(){
             listeInf10 = [];
             listeNumberFusion = [];
             NombreAleatoire();
-            CarteValideAleatoire();
+            CarteValide();
         } 
     })
 
